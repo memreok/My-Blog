@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ben from './assets/ben.jpg';
 
 function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,15 +11,25 @@ function Header() {
 
     return (
         <>
-            <header className="p-9 bg-gray-800 text-white  top-0 z-10">
+            <header className="p-4 md:p-6 bg-gray-800 text-white top-0 z-10">
                 <div className="container mx-auto flex justify-between items-center">
 
-                    <div className="text-xl font-bold">
-                        <Link to="/">Mehmet Emre Ök</Link>
+                    <div className="flex items-center gap-4">
+                        <img
+                            src={ben}
+                            alt="Vesikalık Fotoğraf"
+                            className="rounded-full w-12 h-12 shadow-lg"
+                        />
+                        <div className="text-xl font-bold">
+                            <Link to="/">Mehmet Emre Ök</Link>
+                        </div>
                     </div>
+
 
                     <nav className="hidden md:flex space-x-6">
                         <Link to="/" className="hover:text-gray-400">Ana Sayfa</Link>
+
+                        <Link to="/projects" className="hover:text-gray-400">Projelerim</Link>
                         <Link to="/blog" className="hover:text-gray-400">Blog</Link>
                         <Link to="/contact" className="hover:text-gray-400">İletişim</Link>
                     </nav>
@@ -46,10 +57,15 @@ function Header() {
                     </div>
                 </div>
 
+
                 {isMobileMenuOpen && (
                     <nav className="md:hidden bg-gray-700 text-white p-4 space-y-2">
                         <Link to="/" className="block hover:text-gray-400" onClick={toggleMobileMenu}>
                             Ana Sayfa
+                        </Link>
+
+                        <Link to="/projects" className="block hover:text-gray-400" onClick={toggleMobileMenu}>
+                            Projelerim
                         </Link>
                         <Link to="/blog" className="block hover:text-gray-400" onClick={toggleMobileMenu}>
                             Blog
