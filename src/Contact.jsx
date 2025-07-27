@@ -48,7 +48,7 @@ function Contact() {
         };
 
 
-        const res = await fetch('http://localhost:8080/api/contact', {
+        const res = await fetch('https://go-smtp-service.onrender.com', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
