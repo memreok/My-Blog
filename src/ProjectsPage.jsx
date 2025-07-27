@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import ScrollToTopButton from './ScroolToTopButton';
 
 
 const GitHubIcon = () => (
@@ -83,6 +84,7 @@ function ProjectsPage() {
                 </div>
             </main>
             <Footer />
+            <ScrollToTopButton />
         </div>
     );
 }

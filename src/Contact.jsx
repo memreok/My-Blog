@@ -1,159 +1,69 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import ScrollToTopButton from './ScroolToTopButton';
 
+// İkonları doğrudan bileşen içinde tanımlamak bu basit sayfa için en kolayıdır.
+const MailIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+);
+
+const LinkedInIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+    </svg>
+);
+
+const GitHubIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+    </svg>
+);
+
+
 function Contact() {
-
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: '',
-        _gotcha: ''
-    });
-
-    const [formStatus, setFormStatus] = useState({
-        submitted: false,
-        submitting: false,
-        info: { error: false, msg: null }
-    });
-
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setFormStatus(prevState => ({ ...prevState, submitting: true }));
-
-
-        if (formData._gotcha) {
-
-            console.log("Bot tespiti!");
-            setFormStatus({ submitted: true, submitting: false, info: { error: false, msg: 'Mesajınız gönderildi.' } });
-            return;
-        }
-
-
-        const dataToSend = {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-        };
-
-
-        const res = await fetch('https://go-smtp-service.onrender.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataToSend)
-        });
-
-        const responseData = await res.json();
-
-        if (res.ok) {
-            setFormStatus({
-                submitted: true,
-                submitting: false,
-                info: { error: false, msg: responseData.message }
-            });
-            setFormData({ name: '', email: '', message: '', _gotcha: '' });
-        } else {
-            setFormStatus({
-                submitted: false,
-                submitting: false,
-                info: { error: true, msg: responseData.message || 'Bir hata oluştu.' }
-            });
-        }
-    };
-
     return (
         <div className="bg-gray-900">
             <Header />
             <main className="container mx-auto min-h-screen flex flex-col justify-center items-center px-4 py-10">
-                <div className="w-full max-w-lg bg-gray-800 shadow-xl rounded-lg p-6 md:p-8">
-                    <h1 className="text-3xl font-bold text-white text-center mb-2">İletişime Geçin</h1>
-                    <p className="text-gray-400 text-center mb-6">Aşağıdaki formu doldurarak bana ulaşabilirsiniz.</p>
-
-                    <form onSubmit={handleSubmit}>
-
-                        <div className="mb-4">
-                            <label htmlFor="name" className="block text-gray-300 text-sm font-bold mb-2">Ad Soyad</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                            />
-                        </div>
-
-
-                        <div className="mb-4">
-                            <label htmlFor="email" className="block text-gray-300 text-sm font-bold mb-2">E-posta Adresi</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                            />
-                        </div>
-
-
-                        <input
-                            type="text"
-                            name="_gotcha"
-                            value={formData._gotcha}
-                            onChange={handleChange}
-                            tabIndex={-1}
-                            autoComplete="off"
-                            className="hidden"
-                        />
-
-
-                        <div className="mb-6">
-                            <label htmlFor="message" className="block text-gray-300 text-sm font-bold mb-2">Mesajınız</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="5"
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-gray-700 text-white border border-gray-600 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                            ></textarea>
-                        </div>
-
-
-                        <div className="text-center">
-                            <button
-                                type="submit"
-                                disabled={formStatus.submitting}
-                                className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300 disabled:bg-gray-500 disabled:cursor-not-allowed"
-                            >
-                                {formStatus.submitting ? 'Gönderiliyor...' : 'Mesajı Gönder'}
-                            </button>
-                        </div>
-                    </form>
-
-
-                    {formStatus.info.msg && (
-                        <p className={`text-center mt-4 ${formStatus.info.error ? 'text-red-500' : 'text-green-500'}`}>
-                            {formStatus.info.msg}
+                <div className="w-full max-w-lg bg-gray-800 shadow-xl rounded-lg p-8">
+                    <div className="text-center">
+                        <h1 className="text-4xl font-bold text-white mb-3">İletişim</h1>
+                        <p className="text-gray-400 mb-8">
+                            Benimle aşağıdaki kanallar üzerinden bağlantı kurabilirsiniz.
                         </p>
-                    )}
+                    </div>
+
+                    <div className="space-y-8">
+                        {/* Email */}
+                        <a href="mailto:mehmetemreok.contact@gmail.com" className="flex items-center space-x-4 group">
+                            <MailIcon />
+                            <div>
+                                <h2 className="text-lg font-semibold text-gray-200">Email</h2>
+                                <p className="text-teal-400 group-hover:underline">mehmetemreok.contact@gmail.com</p>
+                            </div>
+                        </a>
+
+                        {/* LinkedIn */}
+                        <a href="https://www.linkedin.com/in/mehmet-emre-%C3%B6k-a6433620a/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-4 group">
+                            <LinkedInIcon />
+                            <div>
+                                <h2 className="text-lg font-semibold text-gray-200">LinkedIn</h2>
+                                <p className="text-teal-400 group-hover:underline">Mehmet Emre Ök</p>
+                            </div>
+                        </a>
+
+                        {/* GitHub */}
+                        <a href="https://github.com/memreok" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-4 group">
+                            <GitHubIcon />
+                            <div>
+                                <h2 className="text-lg font-semibold text-gray-200">GitHub</h2>
+                                <p className="text-teal-400 group-hover:underline">memreok</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </main>
             <Footer />
