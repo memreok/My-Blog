@@ -18,7 +18,7 @@ function Header() {
                         <img
                             src={ben}
                             alt="Vesikalık Fotoğraf"
-                            className="rounded-full w-12 h-12 shadow-lg"
+                            className="rounded-full w-14 h-14 shadow-lg"
                         />
                         <div className="text-xl font-bold">
                             <Link to="/">Mehmet Emre Ök</Link>

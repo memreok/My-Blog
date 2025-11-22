@@ -29,6 +29,19 @@ function ProjectsPage() {
             githubLink: "https://github.com/memreok/vulntrack"
         },
         {
+      title: "OBSAP - Otobüs Bileti Satın Alma Platformu",
+      description: "Otobüs bileti satış süreçlerini dijitalleştiren; Admin, Firma Yetkilisi ve Son Kullanıcı olmak üzere 3 farklı rol mekanizmasına sahip kapsamlı bir web uygulaması. Docker üzerinde çalışan bir proje.",
+      technologies: ["PHP", "SQLite", "Docker", "Tailwind CSS", "RBAC"],
+      features: [
+          "Rol Bazlı Yetkilendirme (RBAC): Session tabanlı güvenli oturum yönetimi ve yetki kontrolü.",
+          "Admin Paneli: Sistemdeki tüm firmaların, firma yetkililerinin ve kuponların merkezi yönetimi.",
+          "Firma Paneli: Firmaların kendi seferlerini oluşturması, bilet satışlarını analiz etmesi ve gelir takibi yapması.",
+          "Kullanıcı Deneyimi: Görsel koltuk seçimi (dolu/boş/koridor), bilet satın alma, iptal etme ve profil yönetimi.",
+          "Altyapı: Docker Compose ile izole edilmiş, hızlı kurulum ve çalıştırma ortamı."
+      ],
+      githubLink: "https://github.com/memreok/bilet-satin-alma-obsap"
+        },  
+        {
             title: "The Password Game",
             description: "Bu projenin temel amacı, kullanıcılara eğlenceli bir senaryo üzerinden güçlü ve karmaşık şifreler oluşturmanın önemini kavratmaktır. Geleneksel şifreleme yöntemlerinin yetersiz kalabildiği günümüzde, kullanıcıları yaratıcı ve zorlu şifreler oluşturmaya teşvik ederek çevrimiçi güvenlik bilincini artırmayı hedeflemektedir.",
             technologies: ["PHP", "MySQL"],
@@ -38,6 +51,7 @@ function ProjectsPage() {
             ],
             githubLink: "https://github.com/memreok/thepasswordgame"
         }
+
     ];
 
     return (

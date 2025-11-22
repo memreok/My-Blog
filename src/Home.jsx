@@ -60,13 +60,21 @@ function Home() {
                         </li>
                         <li className="flex items-start gap-x-3">
                             <span className="mt-1">▶️</span>
-                            <span><strong>Veritabanı:</strong> MySQL, PostgreSQL</span>
+                            <span><strong>Veritabanı:</strong> MySQL, PostgreSQL, SQLite3</span>
+                        </li>
+
+                        <li className="flex items-start gap-x-3">
+                            <span className="mt-1">▶️</span>
+                           <span><strong>Daha önce kullandığım ve bildiğim diller: </strong> 
+                             C, C++, Python, JavaScript, HTML, CSS ( Bootsrap, Tailwind CSS ), Java, React
+                            </span>
+                            
                         </li>
                     </ul>
 
                     <h3 className="text-xl font-semibold text-white mt-6 mb-3">🔧 Araçlar ve Teknolojiler</h3>
                     <p className="text-gray-300">
-                        Wireshark, Nmap, Metasploit (temel düzeyde), Burp Suite (temel düzeyde), Git & GitHub, Docker (temel düzeyde)
+                        Wireshark, Nmap, Metasploit, Burp Suite, Git & GitHub, Docker gibi araçları ve temel siber güvenlik araçlarını kullanabiliyorum.
                     </p>
 
                     <p className="text-gray-300 text-lg mt-8">
@@ -82,7 +90,7 @@ function Home() {
                         Ortaöğretimim sırasıyla Atatürk İlkokulu, Çanakkale Şehitleri Ortaokul ve Mehmet Doğan Fen Lisesinde geçti. 2023 yılında Mehmet Doğan Fen Lisesinden 1. olarak mezun oldum ve aynı yılda Bartın Üniversitesi Bilgisayar Mühendisliği bölümüne başladım. Şu anda 3. sınıf ögrencisiyim.
                     </p>
 
-                    <p className="text-gray-500 text-sm text-right mt-10">Son Düzenleme: 24/07/2025</p>
+                    <p className="text-gray-500 text-sm text-right mt-10">Son Düzenleme: 23/11/2025</p>
                 </div>
 
 
